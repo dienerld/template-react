@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { Hello } from '../components/Hello';
+import { routes } from './routes';
 
 export function Routers() {
   return (
     <Routes>
-      <Route path="/" element={<Hello />} />
+      {routes.map((route) => (
+        <Route key={route.path} path={route.path} element={<route.component />} />
+      ))}
     </Routes>
   );
 }

@@ -18,7 +18,7 @@ const BADGE_CONTENT = 0;
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
-
+  const title = 'Template';
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -39,7 +39,7 @@ function ResponsiveAppBar() {
               variant="h6"
               noWrap
               component={Link}
-              to="/home"
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -50,7 +50,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-              Meus contatos
+              {title}
             </Typography>
           </Badge>
 
@@ -100,7 +100,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -112,7 +112,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Meus contatos
+            {title}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: { md: 'flex-end' } }}>
             {routes.map((page) => {
