@@ -1,9 +1,9 @@
 import React from 'react';
 import { Home } from '../pages/Home';
-import { About } from '../pages/About';
+import { Character } from '../pages/Character';
 
 export type TMapRoutes = {
-  label: string;
+  label?: string;
   path: string;
   // eslint-disable-next-line no-undef
   component: React.FC;
@@ -16,8 +16,10 @@ export const routes: TMapRoutes[] = [
     component: Home,
   },
   {
-    label: 'About',
-    path: '/about',
-    component: About,
+    // without label not render in app bar
+    // label: 'Character',
+
+    path: '/character/:id',
+    component: Character,
   },
 ];

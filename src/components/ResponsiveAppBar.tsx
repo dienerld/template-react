@@ -19,7 +19,9 @@ const BADGE_CONTENT = 0;
 function ResponsiveAppBar() {
   const navigate = useNavigate();
   const title = 'Template';
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -83,17 +85,22 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {routes.map((page) => (
-                <MenuItem key={page.path} onClick={() => handleCloseNavMenu(page.path)}>
-                  {page.path === '/counter' ? (
-                    <Badge badgeContent={BADGE_CONTENT} color="secondary">
+              {routes.map((page) =>
+                page.label ? (
+                  <MenuItem
+                    key={page.path}
+                    onClick={() => handleCloseNavMenu(page.path)}
+                  >
+                    {page.path === '/counter' ? (
+                      <Badge badgeContent={BADGE_CONTENT} color="secondary">
+                        <Typography textAlign="center">{page.label}</Typography>
+                      </Badge>
+                    ) : (
                       <Typography textAlign="center">{page.label}</Typography>
-                    </Badge>
-                  ) : (
-                    <Typography textAlign="center">{page.label}</Typography>
-                  )}
-                </MenuItem>
-              ))}
+                    )}
+                  </MenuItem>
+                ) : null,
+              )}
             </Menu>
           </Box>
           <Typography
@@ -114,19 +121,15 @@ function ResponsiveAppBar() {
           >
             {title}
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: { md: 'flex-end' } }}>
-            {routes.map((page) => {
-              return page.path === '/counter' ? (
-                <Button
-                  key={page.path}
-                  onClick={() => handleCloseNavMenu(page.path)}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  <Badge badgeContent={BADGE_CONTENT} color="secondary">
-                    {page.label}
-                  </Badge>
-                </Button>
-              ) : (
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: { md: 'flex-end' },
+            }}
+          >
+            {routes.map((page) =>
+              page?.label ? (
                 <Button
                   key={page.path}
                   onClick={() => handleCloseNavMenu(page.path)}
@@ -134,8 +137,8 @@ function ResponsiveAppBar() {
                 >
                   {page.label}
                 </Button>
-              );
-            })}
+              ) : null,
+            )}
           </Box>
         </Toolbar>
       </Container>
